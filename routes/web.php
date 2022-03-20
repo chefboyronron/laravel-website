@@ -44,3 +44,8 @@ Route::get('cms/logout', function(){
 Route::get('/article/{id}', function($id){
     return $id;
 })->where('id', '[0-9]');
+
+// calling custom method with view
+Route::get('/blade/custom', 'BladeElementsController@custom');
+Route::post('/blade/data_receiver', 'BladeElementsController@data_receiver');
+Route::resource('/blade', 'BladeElementsController');
