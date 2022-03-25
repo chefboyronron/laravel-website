@@ -1,5 +1,6 @@
 @include('database.menu')
 <style>
+    /* Embed style for study purposes, will convert to sass in the future. */
     body {
         font-family:'Times New Roman', Times, serif;
     }
@@ -18,6 +19,9 @@
     }
     a {
         color: #000;
+    }
+    .delete_form{
+        margin:0;
     }
 </style>
 <table border="1" style="margin-bottom:20px;">
@@ -43,12 +47,10 @@
                 <td>{{ date('F d, Y g:i A', strtotime($channel->created_at)) }}</td>
                 <td>{{ date('F d, Y g:i A', strtotime($channel->updated_at)) }}</td>
                 <td colspan="2">
-                    <form action="{{ url('/database/' . $channel->id) }}" method="POST">
-                        @csrf
+                    {!! Form::open(['url'=>'/database/' . $channel->id, 'method' => 'delete', 'class' => 'delete_form']) !!}
                         <a href="{{ url('/database/' . $channel->id . '/edit') }}">Edit</a> | 
-                        <input type="hidden" name="_method" value="DELETE">
-                        <input type="submit" value="Delete" class="text-only">
-                    </form>
+                        {!! Form::submit('Delete', ['class'=>'text-only']) !!}
+                    {!! Form::close() !!}
                 </td>
             </tr>
         @endforeach

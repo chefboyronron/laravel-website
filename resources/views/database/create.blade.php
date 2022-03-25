@@ -14,14 +14,9 @@
     </div>
 @endif
 
-<form action="{{ url('/database') }}" method="POST">
-    @csrf
-    @method('post')
-    <input type="text" name="name" value="">
-    <select name="is_active" id="is_active">
-        @foreach ($isActiveOptions as $key => $isActiveOption)
-            <option value="{{ $key }}">{{ $isActiveOption }}</option>
-        @endforeach
-    </select>
-    <input type="submit" name="submit" value="Add">
-</form>
+{!! Form::open(['url' => '/database', 'method' => 'POST']) !!}
+    {{-- @csrf added authomatically on laravel collective html --}}
+    {!! Form::text('name') !!}
+    {!! Form::select('is_active', $isActiveOptions) !!}
+    {!! Form::submit('Add') !!}
+{!! Form::close() !!}

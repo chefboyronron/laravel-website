@@ -43,12 +43,31 @@ class DatabaseController extends Controller {
         try {
             $record = Channel::where('id', $id)->get();
             $count = $record->count();
-            $isActiveOptions = [0 => 'Inactive', 1 => 'Active'];
+            $activeOption = '';
+
+            // Determine which record is selected
+            $statuses = [
+                0 => ['name' => 'Inactive', 'selected' => false],
+                1 => ['name' => 'Active', 'selected' => false],
+            ];
+            $statuses[$record[0]['is_active']]['selected'] = true;
+
+            foreach( $statuses as $key => $option ) {
+                if( $option['selected'] === true ) {
+                    $activeOption = $key;
+                }
+            }
+
+            // Rebuild statuses array for collective html usage
+            foreach( $statuses as $key => $value ) {
+                $statuses[$key] = $value['name'];
+            }
 
             if( $count > 0 ) {
                 return view('database.edit', [
                     'record' => $record,
-                    'isActiveOptions' => $isActiveOptions
+                    'statuses' => $statuses,
+                    'activeOption' => $activeOption
                 ]);
             } else {
                 abort(404);
