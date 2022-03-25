@@ -49,3 +49,7 @@ Route::get('/article/{id}', function($id){
 Route::get('/blade/custom', 'BladeElementsController@custom');
 Route::post('/blade/data_receiver', 'BladeElementsController@data_receiver');
 Route::resource('/blade', 'BladeElementsController');
+
+// View Composer
+Route::get('/channels', 'ChannelController@index');
+Route::get('/channels/create', 'ChannelController@create');
