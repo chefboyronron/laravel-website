@@ -53,3 +53,6 @@ Route::resource('/blade', 'BladeElementsController');
 // View Composer
 Route::get('/channels', 'ChannelController@index');
 Route::get('/channels/create', 'ChannelController@create');
+
+// Route for database functions view
+Route::resource('/database', 'DatabaseController');

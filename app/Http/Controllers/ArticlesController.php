@@ -14,7 +14,7 @@ class ArticlesController extends Controller {
     {
         echo 'id: ' . $id . '<br>'; 
         // Getting request variable
-        // Same approcgh in post method
+        // Same approach in post method
         if( request('type') !== NULL ) {
             echo 'type: ' .  request('type');
         }
