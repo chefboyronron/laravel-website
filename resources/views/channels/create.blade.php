@@ -8,6 +8,6 @@
 </head>
 <body>
     <!-- Dropdown -->
-    @include('partials.channels.dropdown')
+    @include('partials.channels.dropdown', ['field' => 'my_channels'])
 </body>
 </html>
